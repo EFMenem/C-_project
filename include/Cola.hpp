@@ -58,4 +58,78 @@ public:
     ~Cola();
 };
 
+
+template<typename T>
+Cola<T>::Cola() {
+    primer_nodo = nullptr;
+    ultimo_nodo = nullptr;
+    cantidad_datos = 0;
+}
+
+template<typename T>
+void Cola<T>::alta(T dato) {
+    Nodo<T>* nuevo = new Nodo<T>(dato);
+    if (vacio()) {
+        primer_nodo = nuevo;
+        ultimo_nodo = nuevo;
+    } else {
+        Nodo<T> * anterior = ultimo_nodo;
+        anterior->cambiar_siguiente(nuevo);
+        ultimo_nodo = anterior->obtener_siguiente();
+    }
+
+    cantidad_datos++;
+}
+
+template<typename T>
+T Cola<T>::baja() {
+    if(vacio()) {
+        throw Cola_exception();
+    }
+
+    T dato_a_bajar = primero();
+    Nodo<T>* auxiliar = primer_nodo->obtener_siguiente();
+    delete primer_nodo;
+    cantidad_datos--;
+    primer_nodo = auxiliar;
+
+    return dato_a_bajar;
+}
+
+template<typename T>
+T Cola<T>::primero() {
+    if(vacio()) {
+        throw Cola_exception();
+    }
+    return primer_nodo->obtener_dato();
+
+}
+
+template<typename T>
+T Cola<T>::ultimo() {
+    if( vacio()) {
+        throw Cola_exception();
+    }
+    return ultimo_nodo->obtener_dato();
+}
+
+template<typename T>
+size_t Cola<T>::tamanio() {
+    return cantidad_datos;
+}
+
+template<typename T>
+bool Cola<T>::vacio() {
+    return (cantidad_datos == 0);
+}
+
+template<typename T>
+Cola<T>::~Cola() {
+    while(!vacio()) {
+        baja();
+    }
+}
+
+
+
 #endif

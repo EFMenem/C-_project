@@ -4,7 +4,7 @@
 template<typename T>
 class Nodo {
 private:
-    T dato{};
+    T dato ;
     Nodo<T>* siguiente;
 public:
     // Constructor.
@@ -24,6 +24,31 @@ public:
 
     // Destructor.
     ~Nodo();
+
 };
+
+template <typename T>
+Nodo<T>::Nodo(T valor) {
+    dato = valor ;
+    siguiente = nullptr;
+}
+
+template<typename T>
+Nodo<T>* Nodo<T>::obtener_siguiente() {
+    return siguiente;
+}
+
+template <typename T>
+void Nodo<T>::cambiar_siguiente(Nodo<T> *nuevo) {
+    siguiente = nuevo;
+}
+
+template <typename T>
+T Nodo<T>::obtener_dato() {
+    return dato;
+}
+
+template<typename T>
+Nodo<T>::~Nodo() {}
 
 #endif

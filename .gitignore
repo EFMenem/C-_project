@@ -34,3 +34,9 @@
 #IDE
 .idea/
 cmake-build-debug/
+
+
+#comprimidos
+*.zip
+
+.DS_Store
