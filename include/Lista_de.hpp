@@ -181,6 +181,7 @@ void  Lista_de<T>::alta(T dato) {
         ultimo_nodo = nuevo;
     }
     cantidad_datos++;
+    reiniciar_cursor(true);
 }
 
 template <typename T>
@@ -197,13 +198,12 @@ T Lista_de<T>::baja() {
         }
     } else {
         primer_nodo = nullptr;
-        reiniciar_cursor(true);
     }
     delete ultimo_nodo;
 
     ultimo_nodo = anterior;
     cantidad_datos--;
-
+    reiniciar_cursor(true);
     return dato_a_bajar;
 
 }
